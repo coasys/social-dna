@@ -1,0 +1,37 @@
+{
+  "target_class": "flux://TaskBoard",
+  "properties": [
+    {
+      "path": "flux://board_name",
+      "name": "boardName",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://board_name", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://ordered_column_ids",
+      "name": "orderedColumnIds",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://ordered_column_ids", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_task_board", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://TaskBoard", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_task_board" }
+  ],
+  "remover_actions": []
+}

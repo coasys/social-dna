@@ -1,0 +1,36 @@
+{
+  "target_class": "flux://Embedding",
+  "properties": [
+    {
+      "path": "flux://embedding",
+      "name": "embedding",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://embedding", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://model",
+      "name": "model",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://model", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_embedding", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://Embedding", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_embedding" }
+  ],
+  "remover_actions": []
+}

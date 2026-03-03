@@ -1,0 +1,61 @@
+{
+  "target_class": "flux://App",
+  "properties": [
+    {
+      "path": "rdf://name",
+      "name": "name",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "rdf://name", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "rdf://description",
+      "name": "description",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "rdf://description", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "rdf://icon",
+      "name": "icon",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "rdf://icon", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "rdf://pkg",
+      "name": "pkg",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "rdf://pkg", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_app", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://App", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_app" }
+  ],
+  "remover_actions": []
+}

@@ -1,0 +1,47 @@
+{
+  "target_class": "flux://SemanticRelationship",
+  "properties": [
+    {
+      "path": "flux://has_expression",
+      "name": "expression",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://has_expression", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_tag",
+      "name": "tag",
+      "datatype": "xsd:string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://has_tag", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_relevance",
+      "name": "relevance",
+      "datatype": "xsd:integer",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://has_relevance", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_semantic_relationship", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://SemanticRelationship", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_semantic_relationship" }
+  ],
+  "remover_actions": []
+}

@@ -1,0 +1,37 @@
+{
+  "target_class": "flux://TaskColumn",
+  "properties": [
+    {
+      "path": "flux://column_name",
+      "name": "columnName",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://column_name", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://ordered_task_ids",
+      "name": "orderedTaskIds",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://ordered_task_ids", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_task_column", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://TaskColumn", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_task_column" }
+  ],
+  "remover_actions": []
+}

@@ -1,0 +1,1149 @@
+[
+  {
+    "target_class": "flux://App",
+    "properties": [
+      {
+        "path": "rdf://name",
+        "name": "name",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "rdf://name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "rdf://description",
+        "name": "description",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "rdf://description",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "rdf://icon",
+        "name": "icon",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "rdf://icon",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "rdf://pkg",
+        "name": "pkg",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "rdf://pkg",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_app",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://App",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_app"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Channel",
+    "properties": [
+      {
+        "path": "flux://has_channel_name",
+        "name": "name",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_channel_name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_channel_description",
+        "name": "description",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_channel_description",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://channel_is_conversation",
+        "name": "isConversation",
+        "datatype": "xsd:boolean",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://channel_is_conversation",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://channel_is_pinned",
+        "name": "isPinned",
+        "datatype": "xsd:boolean",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://channel_is_pinned",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_app",
+        "name": "views",
+        "collection": true,
+        "where_is_instance": "App",
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://has_app",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://has_app",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_participant",
+        "name": "participants",
+        "collection": true,
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://has_participant",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://has_participant",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_channel",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Channel",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_channel"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Community",
+    "properties": [
+      {
+        "path": "rdf://name",
+        "name": "name",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "rdf://name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "rdf://description",
+        "name": "description",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "rdf://description",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://image",
+        "name": "image",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "file-storage",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://image",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://thumbnail",
+        "name": "thumbnail",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "file-storage",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://thumbnail",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "ad4m://has_child",
+        "name": "channels",
+        "collection": true,
+        "where_is_instance": "Channel",
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "ad4m://has_child",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "ad4m://has_child",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_community",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Community",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_community"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Conversation",
+    "properties": [
+      {
+        "path": "flux://has_name",
+        "name": "conversationName",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://name_is_fixed",
+        "name": "nameFixed",
+        "datatype": "xsd:boolean",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://name_is_fixed",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_summary",
+        "name": "summary",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_summary",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_participant",
+        "name": "participants",
+        "collection": true,
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://has_participant",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://has_participant",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://conversation",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Conversation",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://conversation"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://ConversationSubgroup",
+    "properties": [
+      {
+        "path": "flux://has_name",
+        "name": "subgroupName",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_summary",
+        "name": "summary",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_summary",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_participant",
+        "name": "participants",
+        "collection": true,
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://has_participant",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://has_participant",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://conversation_subgroup",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://ConversationSubgroup",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://conversation_subgroup"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Embedding",
+    "properties": [
+      {
+        "path": "flux://embedding",
+        "name": "embedding",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://embedding",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://model",
+        "name": "model",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://model",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_embedding",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Embedding",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_embedding"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Message",
+    "properties": [
+      {
+        "path": "flux://body",
+        "name": "body",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://body",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://transcript_started_at",
+        "name": "transcriptStartedAt",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://transcript_started_at",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_reaction",
+        "name": "reactions",
+        "collection": true,
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://has_reaction",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://has_reaction",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_reply",
+        "name": "replyingTo",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": false
+      },
+      {
+        "path": "flux://is_popular",
+        "name": "isPopular",
+        "datatype": "xsd:boolean",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": false
+      },
+      {
+        "path": "ad4m://has_child",
+        "name": "thread",
+        "collection": true,
+        "where_is_instance": "Message",
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "ad4m://has_child",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "ad4m://has_child",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_reply",
+        "name": "replies",
+        "collection": true,
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://has_reply",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://has_reply",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_message",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Message",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_message"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://SemanticRelationship",
+    "properties": [
+      {
+        "path": "flux://has_expression",
+        "name": "expression",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_expression",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_tag",
+        "name": "tag",
+        "datatype": "xsd:string",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_tag",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://has_relevance",
+        "name": "relevance",
+        "datatype": "xsd:integer",
+        "min_count": 0,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://has_relevance",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_semantic_relationship",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://SemanticRelationship",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_semantic_relationship"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Task",
+    "properties": [
+      {
+        "path": "flux://task_name",
+        "name": "taskName",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://task_name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://task_assignee",
+        "name": "assignees",
+        "collection": true,
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "flux://task_assignee",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "flux://task_assignee",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "ad4m://has_child",
+        "name": "comments",
+        "collection": true,
+        "where_is_instance": "Message",
+        "adder": [
+          {
+            "action": "addLink",
+            "source": "this",
+            "predicate": "ad4m://has_child",
+            "target": "value",
+            "local": false
+          }
+        ],
+        "remover": [
+          {
+            "action": "removeLink",
+            "source": "this",
+            "predicate": "ad4m://has_child",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_task",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Task",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_task"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://TaskBoard",
+    "properties": [
+      {
+        "path": "flux://board_name",
+        "name": "boardName",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://board_name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://ordered_column_ids",
+        "name": "orderedColumnIds",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://ordered_column_ids",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_task_board",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://TaskBoard",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_task_board"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://TaskColumn",
+    "properties": [
+      {
+        "path": "flux://column_name",
+        "name": "columnName",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://column_name",
+            "target": "value",
+            "local": false
+          }
+        ]
+      },
+      {
+        "path": "flux://ordered_task_ids",
+        "name": "orderedTaskIds",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://ordered_task_ids",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_task_column",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://TaskColumn",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_task_column"
+      }
+    ],
+    "remover_actions": []
+  },
+  {
+    "target_class": "flux://Topic",
+    "properties": [
+      {
+        "path": "flux://topic",
+        "name": "topic",
+        "datatype": "xsd:string",
+        "min_count": 1,
+        "max_count": 1,
+        "writable": true,
+        "resolve_language": "literal",
+        "setter": [
+          {
+            "action": "setSingleTarget",
+            "source": "this",
+            "predicate": "flux://topic",
+            "target": "value",
+            "local": false
+          }
+        ]
+      }
+    ],
+    "constructor_actions": [
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_topic",
+        "local": false
+      },
+      {
+        "action": "addLink",
+        "source": "this",
+        "predicate": "rdf://type",
+        "target": "flux://Topic",
+        "local": false
+      }
+    ],
+    "instance_conditions": [
+      {
+        "action": "hasLink",
+        "source": "this",
+        "predicate": "flux://entry_type",
+        "target": "flux://has_topic"
+      }
+    ],
+    "remover_actions": []
+  }
+]

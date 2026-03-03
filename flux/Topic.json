@@ -1,0 +1,25 @@
+{
+  "target_class": "flux://Topic",
+  "properties": [
+    {
+      "path": "flux://topic",
+      "name": "topic",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://topic", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_topic", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://Topic", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_topic" }
+  ],
+  "remover_actions": []
+}

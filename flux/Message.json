@@ -1,0 +1,87 @@
+{
+  "target_class": "flux://Message",
+  "properties": [
+    {
+      "path": "flux://body",
+      "name": "body",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://body", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://transcript_started_at",
+      "name": "transcriptStartedAt",
+      "datatype": "xsd:string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://transcript_started_at", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_reaction",
+      "name": "reactions",
+      "collection": true,
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "flux://has_reaction", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "flux://has_reaction", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_reply",
+      "name": "replyingTo",
+      "datatype": "xsd:string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": false
+    },
+    {
+      "path": "flux://is_popular",
+      "name": "isPopular",
+      "datatype": "xsd:boolean",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": false
+    },
+    {
+      "path": "ad4m://has_child",
+      "name": "thread",
+      "collection": true,
+      "where_is_instance": "Message",
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "ad4m://has_child", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "ad4m://has_child", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_reply",
+      "name": "replies",
+      "collection": true,
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "flux://has_reply", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "flux://has_reply", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_message", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://Message", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_message" }
+  ],
+  "remover_actions": []
+}

@@ -1,0 +1,73 @@
+{
+  "target_class": "flux://Community",
+  "properties": [
+    {
+      "path": "rdf://name",
+      "name": "name",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "rdf://name", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "rdf://description",
+      "name": "description",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "rdf://description", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://image",
+      "name": "image",
+      "datatype": "xsd:string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "file-storage",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://image", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://thumbnail",
+      "name": "thumbnail",
+      "datatype": "xsd:string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "file-storage",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://thumbnail", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "ad4m://has_child",
+      "name": "channels",
+      "collection": true,
+      "where_is_instance": "Channel",
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "ad4m://has_child", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "ad4m://has_child", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_community", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://Community", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_community" }
+  ],
+  "remover_actions": []
+}

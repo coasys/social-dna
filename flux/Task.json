@@ -1,0 +1,48 @@
+{
+  "target_class": "flux://Task",
+  "properties": [
+    {
+      "path": "flux://task_name",
+      "name": "taskName",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://task_name", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://task_assignee",
+      "name": "assignees",
+      "collection": true,
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "flux://task_assignee", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "flux://task_assignee", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "ad4m://has_child",
+      "name": "comments",
+      "collection": true,
+      "where_is_instance": "Message",
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "ad4m://has_child", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "ad4m://has_child", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_task", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://Task", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_task" }
+  ],
+  "remover_actions": []
+}

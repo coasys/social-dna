@@ -1,0 +1,84 @@
+{
+  "target_class": "flux://Channel",
+  "properties": [
+    {
+      "path": "flux://has_channel_name",
+      "name": "name",
+      "datatype": "xsd:string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://has_channel_name", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_channel_description",
+      "name": "description",
+      "datatype": "xsd:string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://has_channel_description", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://channel_is_conversation",
+      "name": "isConversation",
+      "datatype": "xsd:boolean",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://channel_is_conversation", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://channel_is_pinned",
+      "name": "isPinned",
+      "datatype": "xsd:boolean",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [
+        { "action": "setSingleTarget", "source": "this", "predicate": "flux://channel_is_pinned", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_app",
+      "name": "views",
+      "collection": true,
+      "where_is_instance": "App",
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "flux://has_app", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "flux://has_app", "target": "value", "local": false }
+      ]
+    },
+    {
+      "path": "flux://has_participant",
+      "name": "participants",
+      "collection": true,
+      "adder": [
+        { "action": "addLink", "source": "this", "predicate": "flux://has_participant", "target": "value", "local": false }
+      ],
+      "remover": [
+        { "action": "removeLink", "source": "this", "predicate": "flux://has_participant", "target": "value", "local": false }
+      ]
+    }
+  ],
+  "constructor_actions": [
+    { "action": "addLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_channel", "local": false },
+    { "action": "addLink", "source": "this", "predicate": "rdf://type", "target": "flux://Channel", "local": false }
+  ],
+  "instance_conditions": [
+    { "action": "hasLink", "source": "this", "predicate": "flux://entry_type", "target": "flux://has_channel" }
+  ],
+  "remover_actions": []
+}
