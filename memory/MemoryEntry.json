@@ -1,0 +1,91 @@
+{
+  "target_class": "memory://MemoryEntry",
+  "constructor_actions": [
+    {"action": "addLink", "source": "this", "predicate": "rdf://type", "target": "memory://MemoryEntry"}
+  ],
+  "destructor_actions": [
+    {"action": "removeLink", "source": "this", "predicate": "rdf://type", "target": "memory://MemoryEntry"}
+  ],
+  "properties": [
+    {
+      "path": "memory://content",
+      "name": "content",
+      "datatype": "xsd://string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://content", "target": "value"}]
+    },
+    {
+      "path": "memory://timestamp",
+      "name": "timestamp",
+      "datatype": "xsd://string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://timestamp", "target": "value"}]
+    },
+    {
+      "path": "memory://memoryType",
+      "name": "memoryType",
+      "datatype": "xsd://string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://memoryType", "target": "value"}]
+    },
+    {
+      "path": "memory://importance",
+      "name": "importance",
+      "datatype": "xsd://integer",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://importance", "target": "value"}]
+    },
+    {
+      "path": "memory://tags",
+      "name": "tags",
+      "datatype": "xsd://string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://tags", "target": "value"}]
+    },
+    {
+      "path": "memory://sourceFile",
+      "name": "sourceFile",
+      "datatype": "xsd://string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://sourceFile", "target": "value"}]
+    },
+    {
+      "path": "memory://author",
+      "name": "author",
+      "datatype": "xsd://string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://author", "target": "value"}]
+    },
+    {
+      "path": "memory://shareable",
+      "name": "shareable",
+      "datatype": "xsd://boolean",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "memory://shareable", "target": "value"}]
+    }
+  ]
+}

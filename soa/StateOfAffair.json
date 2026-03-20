@@ -1,0 +1,91 @@
+{
+  "target_class": "soa://StateOfAffair",
+  "constructor_actions": [
+    {"action": "addLink", "source": "this", "predicate": "rdf://type", "target": "soa://StateOfAffair"}
+  ],
+  "destructor_actions": [
+    {"action": "removeLink", "source": "this", "predicate": "rdf://type", "target": "soa://StateOfAffair"}
+  ],
+  "properties": [
+    {
+      "path": "soa://title",
+      "name": "title",
+      "datatype": "xsd://string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://title", "target": "value"}]
+    },
+    {
+      "path": "soa://modality",
+      "name": "modality",
+      "datatype": "xsd://string",
+      "min_count": 1,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://modality", "target": "value"}]
+    },
+    {
+      "path": "soa://description",
+      "name": "description",
+      "datatype": "xsd://string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://description", "target": "value"}]
+    },
+    {
+      "path": "soa://confidence",
+      "name": "confidence",
+      "datatype": "xsd://float",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://confidence", "target": "value"}]
+    },
+    {
+      "path": "soa://status",
+      "name": "status",
+      "datatype": "xsd://string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://status", "target": "value"}]
+    },
+    {
+      "path": "soa://tags",
+      "name": "tags",
+      "datatype": "xsd://string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://tags", "target": "value"}]
+    },
+    {
+      "path": "soa://priority",
+      "name": "priority",
+      "datatype": "xsd://integer",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://priority", "target": "value"}]
+    },
+    {
+      "path": "soa://source",
+      "name": "source",
+      "datatype": "xsd://string",
+      "min_count": 0,
+      "max_count": 1,
+      "writable": true,
+      "resolve_language": "literal",
+      "setter": [{"action": "setSingleTarget", "source": "this", "predicate": "soa://source", "target": "value"}]
+    }
+  ]
+}

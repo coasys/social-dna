@@ -1,0 +1,14 @@
+{
+  "description": "SoA relationship predicates for links between StateOfAffair nodes",
+  "predicates": {
+    "REL_SUPPORTS": "soa://rel_supports",
+    "REL_CONTRADICTS": "soa://rel_contradicts",
+    "REL_SIMILAR": "soa://rel_similar",
+    "REL_SAME": "soa://rel_same",
+    "REL_REQUIRES": "soa://rel_requires",
+    "REL_ENABLES": "soa://rel_enables",
+    "REL_PARENT": "soa://rel_parent",
+    "REL_REFINES": "soa://rel_refines",
+    "REL_BLOCKS": "soa://rel_blocks"
+  }
+}
