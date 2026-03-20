@@ -1,0 +1,13 @@
+{
+  "name": "@coasys/social-dna",
+  "private": true,
+  "workspaces": [
+    "soa/v1",
+    "memory/v1",
+    "flux/v1"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present"
+  }
+}

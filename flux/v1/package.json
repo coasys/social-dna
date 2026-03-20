@@ -1,0 +1,13 @@
+{
+  "name": "@coasys/social-dna-flux-v1",
+  "version": "1.0.0",
+  "description": "Flux social DNA for AD4M — channels, messages, conversations, tasks, and more",
+  "type": "module",
+  "files": [
+    "*.json"
+  ],
+  "scripts": {
+    "build": "echo 'Flux v1: JSON-only (TS sources TODO)'"
+  },
+  "license": "MIT"
+}

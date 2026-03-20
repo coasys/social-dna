@@ -15,9 +15,10 @@ export class MemoryEntry extends Ad4mModel {
   @Property({ through: 'memory://content', resolveLanguage: 'literal' })
   content: string = '';
 
-  /** ISO 8601 timestamp */
+  /** ISO 8601 timestamp of the memory */
   @Property({ through: 'memory://timestamp', resolveLanguage: 'literal' })
-  timestamp: string = '';
+  // @ts-ignore — overrides Ad4mModel.timestamp accessor intentionally
+  override timestamp: string = '';
 
   /** Type: long_term, conversation, decision, soa-prototype, technical, etc. */
   @Property({ through: 'memory://memoryType', resolveLanguage: 'literal' })

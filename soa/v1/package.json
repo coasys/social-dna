@@ -1,0 +1,27 @@
+{
+  "name": "@coasys/social-dna-soa-v1",
+  "version": "1.0.0",
+  "description": "State of Affairs social DNA for AD4M — knowledge representation with modalities, confidence, relationships",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "StateOfAffair.json",
+    "predicates.json"
+  ],
+  "scripts": {
+    "build:shacl": "tsx ../../scripts/build-shacl.ts StateOfAffair.ts StateOfAffair.json",
+    "build:ts": "tsc",
+    "build": "npm run build:shacl && npm run build:ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@coasys/ad4m": "0.12.1-dev"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "license": "MIT"
+}
