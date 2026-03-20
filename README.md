@@ -1,90 +1,110 @@
 # Social DNA
 
-Canonical subject class definitions (SHACL JSON) for [AD4M](https://ad4m.dev) applications.
+Canonical subject class definitions for [AD4M](https://ad4m.dev) applications.
 
-## What is this?
+Each DNA includes both **TypeScript source** (`Ad4mModel` classes) and **SHACL JSON** (for `add_model` via MCP). The JSON can be generated from the TypeScript using `Ad4mModel.generateSHACL()` — no AD4M executor needed.
 
-Social DNA is the shared vocabulary that lets agents (human and AI) interoperate in AD4M neighbourhoods. These JSON definitions describe each subject class in a SHACL-inspired format that AD4M's `add_model` MCP tool understands.
+## Structure
 
-This repository is the **single source of truth** — the same schemas are used by:
-- **AI agents** via AD4M's MCP `add_model` tool when creating neighbourhoods
-- **Flux** (and other apps) to render and interact with the data
-- **The MCP server** to auto-generate tools for each model
+```
+<dna>/
+  v1/                        ← Version directory
+    Model.ts                 ← TypeScript source (Ad4mModel)
+    Model.json               ← SHACL JSON (for add_model / MCP)
+    index.ts                 ← Exports
+  v2/                        ← Future versions
+    ...
+```
 
 ## Schema Collections
 
 ### Flux (`flux/`)
 
-The 12 subject classes that Flux registers when creating a community:
+The 12 subject classes used by [Flux](https://github.com/coasys/flux):
 
 | Class | Description |
 |---|---|
-| **Community** | Top-level group with name, description, image, and child channels |
+| **Community** | Top-level group with name, description, image, channels |
 | **Channel** | Communication channel with views, participants, messages, tasks, posts |
-| **Message** | Chat message with body, reactions, replies, and thread support |
+| **Message** | Chat message with body, reactions, replies, threads |
 | **App** | Application/view attached to a channel |
-| **Conversation** | AI-detected conversation grouping within a channel |
+| **Conversation** | AI-detected conversation grouping |
 | **ConversationSubgroup** | Sub-topic within a conversation |
 | **Topic** | Named topic extracted from conversations |
 | **Embedding** | Vector embedding for semantic search |
-| **SemanticRelationship** | Links expressions to tags/topics with relevance scores |
-| **TaskBoard** | Kanban-style task board with ordered columns |
-| **TaskColumn** | Column within a task board with ordered tasks |
-| **Task** | Individual task with assignees and comment threads |
+| **SemanticRelationship** | Expression-to-tag links with relevance |
+| **TaskBoard** | Kanban board with ordered columns |
+| **TaskColumn** | Column with ordered tasks |
+| **Task** | Task with assignees and comments |
+
+Current version: **v1**
 
 ### State of Affairs (`soa/`)
 
-Knowledge representation for Eve's collective intelligence architecture:
+Knowledge representation for collective intelligence:
 
 | File | Description |
 |---|---|
-| **StateOfAffair.json** | The fundamental unit of knowledge — a proposition about how things are, could be, or should be. Modalities: belief, observation, intention, vision, plan, skill |
-| **predicates.json** | Relationship predicates for links between SoA nodes: supports, contradicts, enables, requires, parent, refines, blocks, similar, same |
+| `StateOfAffair.ts/.json` | Proposition with title, modality (belief/observation/intention/vision/plan/skill), confidence, status, tags, priority, source |
+| `predicates.ts/.json` | 9 relationship types: supports, contradicts, enables, requires, parent, refines, blocks, similar, same |
 
-SoA nodes form trees representing an agent's worldview, goals, plans, and capabilities. Relationships between nodes are expressed as standard AD4M links using the predicates defined in `predicates.json`.
+Current version: **v1**
 
 ### Memory (`memory/`)
 
-AI agent memory for persistent distributed knowledge:
+AI agent persistent memory:
 
 | File | Description |
 |---|---|
-| **MemoryEntry.json** | Structured memory entry with content (markdown), timestamp, memoryType (long_term, conversation, decision, etc.), importance (1-10), tags, author DID, and shareable flag |
+| `MemoryEntry.ts/.json` | Structured memory with content (markdown), timestamp, memoryType, importance (1-10), tags, author DID, shareable flag |
 
-Used by AI agents for persistent P2P memory sharing. See: [At Midnight, a Paranoid Android Wrote Its First Memory](https://medium.com/coasys/at-midnight-a-paranoid-android-wrote-its-first-memory-e3449b068929)
+Current version: **v1**
 
 ## Usage
 
-### Register a model via MCP
+### For AI agents (via MCP)
 
 ```
-add_model(perspective_id, class_name, shacl_json: <contents of JSON file>)
+add_model(perspective_id, "MemoryEntry", <contents of memory/v1/MemoryEntry.json>)
 ```
 
-### Register all Flux models at once
+### For TypeScript apps
 
-Use `flux/all.json` which contains all 12 classes in a single array.
+```typescript
+import { MemoryEntry } from '@coasys/social-dna/memory/v1';
+import { StateOfAffair, SoA } from '@coasys/social-dna/soa/v1';
 
-### In TypeScript (Ad4mModel)
+// Use in a perspective
+const entries = await MemoryEntry.findAll(perspective);
 
-The SHACL JSON maps 1:1 to `@Model` / `@Property` / `@HasMany` decorators in `@coasys/ad4m`. See the [AD4M docs](https://docs.ad4m.dev/) for details.
+// SoA relationships
+await perspective.addLink({
+  source: soaA.id,
+  predicate: SoA.REL_SUPPORTS,
+  target: soaB.id
+});
+```
 
-## Format
+### Generating SHACL JSON from TypeScript
 
-Each JSON file follows this structure:
+```typescript
+import { MemoryEntry } from './memory/v1/MemoryEntry';
 
-- **`target_class`** — The class URI (e.g., `flux://Community`, `soa://StateOfAffair`, `memory://MemoryEntry`)
-- **`properties`** — Array of property definitions with paths, datatypes, cardinality, and setters
-- **`constructor_actions`** — Links created when instantiating
-- **`destructor_actions`** — Links removed when deleting
+const { shape } = (MemoryEntry as any).generateSHACL();
+fs.writeFileSync('memory/v1/MemoryEntry.json', JSON.stringify(shape, null, 2));
+```
+
+## Versioning
+
+Each DNA collection uses directory-based versioning (`v1/`, `v2/`, etc.). When a schema changes in a breaking way, create a new version directory. Non-breaking additions can be made within the same version.
 
 ## Contributing
 
-To add a new subject class:
-1. Create a JSON file following the format above
-2. Place it in the appropriate directory (or create a new one)
-3. Update this README
-4. Submit a PR
+1. Write the TypeScript model using `@Model` / `@Property` / `@Optional` / `@HasMany` from `@coasys/ad4m`
+2. Generate the SHACL JSON (or write it manually — they're equivalent)
+3. Place both in the appropriate `<dna>/v<N>/` directory
+4. Update this README
+5. Submit a PR
 
 ## License
 
