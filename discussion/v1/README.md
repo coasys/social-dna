@@ -92,6 +92,8 @@ The flows have no guards. The run these were tested with carried none, so none w
    (`ad4m://self` `ad4m://has_flow` its name, and the name's `ad4m://flow_uri`) come after its states and
    transitions, so the flow is complete before it is found.
 
-Installed into the Coasys, CoAtlys and Coasys internal spaces on 10 and 11 November 2026. `AgendaItem`,
-the two parent relations on `DiscussionTopic` and `auto_accept` came after that and are not installed in
-any space; they have only run on a throwaway test executor.
+Installed into the Coasys, CoAtlys and Coasys internal spaces on 10 and 11 November 2026. `AgendaItem` and
+the two parent relations on `DiscussionTopic` came after that. They were installed into Coasys internal on
+11 November 2026 (16:51 CET): `DiscussionTopic` was registered again, which replaces its old shape, and
+`AgendaItem` was added. Coasys and CoAtlys still have the first version. `auto_accept` is in the files, but
+the executor does not read it yet.
