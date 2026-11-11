@@ -50,6 +50,23 @@ Knowledge representation for collective intelligence:
 
 Current version: **v1**
 
+### Discussion (`discussion/`)
+
+Interprets a call or chat into a tree: the agenda, the topics under it, and the positions, open questions
+and action items under each topic. Plain SHACL JSON plus the links of two flows, no TypeScript sources yet.
+See [`discussion/v1/README.md`](discussion/v1/README.md).
+
+| File | Description |
+|---|---|
+| `AgendaItem.json` | One line of the call's agenda, given or detected, with order and status |
+| `DiscussionTopic.json` | One thread of discussion, under an agenda item or a broader topic |
+| `Position.json` | A view one person states on a topic |
+| `Question.json` | A question the group leaves open |
+| `ActionItem.json` | Work a named person will do after the call |
+| `flows.json` | The ConversationTopic and Delivery flows, as `add_link` links |
+
+Current version: **v1**
+
 ### Memory (`memory/`)
 
 AI agent persistent memory:
